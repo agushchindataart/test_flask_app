@@ -1,0 +1,5 @@
+[flake8]
+application-import-names=put_aggregated_service, tests
+import-order-style=google
+inline-quotes='
+exclude = .git, .gitignore, env, .pytest_cache, .coverage, __pycache__

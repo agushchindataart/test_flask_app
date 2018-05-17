@@ -1,0 +1,5 @@
+country=fr;city=france;state=fr;zip=75008
+country=fr;city=lyon;state=rh;zip=32432
+country=fr;city=cede32;state=rh;zip=xyz12
+country=us;city=edison;state=nj;zip=12333
+country=india;city=mumbai;state=mh;zip=54353

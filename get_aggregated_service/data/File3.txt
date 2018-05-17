@@ -1,0 +1,5 @@
+country=russia;city=moscow;state=uk;zip=23443
+country=india;city=lyon;state=rh;zip=32432
+country=india;city=calcutta;state=wb;zip=xyz12
+country=india;city=hyderabad;state=nj;zip=12333
+country=india;city=bangalore;state=kar;zip=105674

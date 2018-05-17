@@ -1,0 +1,5 @@
+country=us;city=newyork;state=ny;zip=10019
+country=us;city=albany;state=ny;zip=abc
+country=us;city=34634;state=nj;zip=08820
+country=us;city=edison;state=nj;zip=08820
+country=ek;city=london;state=ld;zip=12342
