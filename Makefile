@@ -25,11 +25,12 @@ run_flake:
 run_integration:
 	bash kill.sh
 	sleep 1
-	get_aggregated_service/env/bin/python get_aggregated_service/application.py &
-	put_aggregated_service/env/bin/python put_aggregated_service/application.py &
+	PYTHONPATH=. get_aggregated_service/env/bin/python get_aggregated_service/application.py &
+	PYTHONPATH=. put_aggregated_service/env/bin/python put_aggregated_service/application.py &
 	sleep 1
-	PYTHpython3 tests/integration.py
+	PYTHONPATH=. python3 tests/integration.py
 	bash kill.sh
+	@echo integration is ok
 
 kill:
 	bash kill.sh
