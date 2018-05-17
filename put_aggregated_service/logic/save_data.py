@@ -7,11 +7,20 @@ from put_aggregated_service.application import app
 
 
 def save_data_to_file(address_data):
-    """Save incoming data to file."""
+    """Save incoming data to file.
+
+    Args:
+        address_data(str): Address data formatted as XML.
+    Return:
+        tuple(bool, str): Return (True,'') if success, else (None, 'error_msg')
+
+    """
     app.logger.info('Saving data to file')
     try:
         file_path = config.DESTINATION_FILE_PATH
         dir_path = os.path.dirname(file_path)
+
+        # checking if destination folder exists
         if not os.path.exists(dir_path):
             os.makedirs(dir_path)
         f = open(file_path, 'wb')

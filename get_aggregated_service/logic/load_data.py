@@ -9,6 +9,16 @@ logger = app.logger
 
 
 def _check_address_field(address_field, address_field_value):
+    """Check if address field format is correct.
+
+    Args:
+        address_field (str): Name of address field.
+        address_field_value (str): Value of address field.
+
+    Returns:
+        bool: True if format is correct, else False.
+
+    """
     if address_field in config.STRING_FIELDS:
         check_result = address_field_value.isalpha()
         if not check_result:
@@ -29,8 +39,19 @@ def _check_address_field(address_field, address_field_value):
 
 
 def _process_address_line(address_line):
+    """Process address line.
+
+    Args:
+        address_line (str): Address line from csv file.
+
+    Returns:
+        dict: Address data dict if line is correct.
+
+    """
     address_items = address_line.split(';')
     result = {}
+
+    # checking if address contains from 4 parts separated by '='
     if len(address_items) == 4:
         for address_item in address_items:
             address_item_split = address_item.split('=')
@@ -55,6 +76,15 @@ def _process_address_line(address_line):
 
 
 def _load_data_from_file(full_file_path):
+    """Process file.
+
+    Args:
+        full_file_path (str): Absolute path to file.
+
+    Returns:
+        list: List of correct file addresses.
+
+    """
     logger.info('Processing file {file}'.format(file=full_file_path))
 
     result = []
@@ -88,11 +118,18 @@ def _load_data_from_file(full_file_path):
 
 
 def load_data_from_files():
-    """Load data from files listed in app config."""
+    """Load data from files listed in app config.
+
+    Returns:
+        list: List of address records from all files.
+
+    """
     logger.info('Loading data from files.')
     files_storage_path = config.SOURCE_FILES_DIR
     file_names = config.DEFAULT_SOURCE_FILES
     result = []
+
+    # processing files one by one
     for file_name in file_names:
         full_file_path = os.path.join(files_storage_path, file_name)
         load_from_file_result, message = _load_data_from_file(full_file_path)

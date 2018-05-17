@@ -8,7 +8,15 @@ logger = app.logger
 
 
 def format_address_data_to_xml(addresses):
-    """Format given data to xml."""
+    """Format given data to xml.
+
+    Args:
+        addresses (list): List of address dicts.
+
+    Returns:
+        str: Address data formatted to xml.
+
+    """
     logger.info('Formatting addresses')
 
     address_root = ET.Element('addresses')
