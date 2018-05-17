@@ -3,6 +3,9 @@
 import os
 
 from get_aggregated_service import config
+from get_aggregated_service.application import app
+
+logger = app.logger
 
 
 def _check_address_field(address_field, address_field_value):
@@ -21,7 +24,7 @@ def _check_address_field(address_field, address_field_value):
     if not check_result:
         error_msg = error_tpl.format(
             field=address_field, value=address_field_value)
-        print(error_msg)
+        logger.error(error_msg)
     return check_result
 
 
@@ -34,7 +37,7 @@ def _process_address_line(address_line):
             if len(address_item_split) != 2:
                 error_tpl = 'Incorrect address item: {item}'
                 error_msg = error_tpl.format(item=address_item)
-                print(error_msg)
+                logger.error(error_msg)
                 return None
             address_field, address_field_value = address_item_split
             item_check_result = _check_address_field(
@@ -47,12 +50,13 @@ def _process_address_line(address_line):
     else:
         error_tpl = 'Incorrect address line: `{line}`. Too many items'
         error_msg = error_tpl.format(line=address_line)
-        print(error_msg)
+        logger.error(error_msg)
         return None
 
 
 def _load_data_from_file(full_file_path):
-    print('Processing file {file}'.format(file=full_file_path))
+    logger.info('Processing file {file}'.format(file=full_file_path))
+
     result = []
     try:
         f = open(full_file_path)
@@ -63,23 +67,29 @@ def _load_data_from_file(full_file_path):
                 error_tpl = 'Skipping line `{line}` for file `{file}`'
                 error_msg = error_tpl.format(
                     line=address_line, file=full_file_path)
-                print(error_msg)
+                logger.error(error_msg)
             else:
                 result.append(address_line_check_result)
-        return result, ''
+        f.close()
+
     except IOError as e:
         error_tpl = 'IOError opening `{file}`: `{error}`'
         error_msg = error_tpl.format(file=full_file_path, error=str(e))
+        logger.error(error_msg)
         return None, error_msg
     except Exception as e:
         error_tpl = 'Unknown error during processing of `{file}`: `{error}`'
         error_msg = error_tpl.format(file=full_file_path, error=str(e))
-        print(error_msg)
+        logger.error(error_msg)
         return None, error_msg
+
+    logger.info('Processing file {file} finished'.format(file=full_file_path))
+    return result, ''
 
 
 def load_data_from_files():
     """Load data from files listed in app config."""
+    logger.info('Loading data from files.')
     files_storage_path = config.SOURCE_FILES_DIR
     file_names = config.DEFAULT_SOURCE_FILES
     result = []
@@ -90,5 +100,7 @@ def load_data_from_files():
             return None, message
         else:
             result.extend(load_from_file_result)
+
+    logger.info('Loading data from files finished.')
 
     return result, ''

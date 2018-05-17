@@ -2,10 +2,15 @@
 
 from xml.etree import ElementTree as ET
 
+from get_aggregated_service.application import app
+
+logger = app.logger
+
 
 def format_address_data_to_xml(addresses):
     """Format given data to xml."""
-    print(addresses)
+    logger.info('Formatting addresses')
+
     address_root = ET.Element('addresses')
     for address in addresses:
         address_node = ET.SubElement(address_root, 'address')
@@ -13,5 +18,7 @@ def format_address_data_to_xml(addresses):
             field_node = ET.SubElement(address_node, address_field)
             field_node.text = address_field_value
     result = ET.tostring(address_root).decode()
+
+    logger.info('Formatting succeeded')
 
     return result
