@@ -50,3 +50,15 @@ This command will run flake8 for both apps.
 make clean
 ```
 This command will remove virtualens for both apps.
+
+### Integration testing
+```cd /path/to/the/project
+make run_integration
+```
+This command will run simple end-to-end test for both apps.
+
+### Stopping apps
+```cd /path/to/the/project
+make kill
+```
+This command will stop both apps.

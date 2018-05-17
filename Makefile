@@ -21,3 +21,15 @@ run_tests:
 run_flake:
 	PYTHONPATH=. get_aggregated_service/env/bin/flake8 get_aggregated_service --config=get_aggregated_service/.flake8 --exclude=env
 	PYTHONPATH=. put_aggregated_service/env/bin/flake8 put_aggregated_service --config=put_aggregated_service/.flake8 --exclude=env
+
+run_integration:
+	bash kill.sh
+	sleep 1
+	get_aggregated_service/env/bin/python get_aggregated_service/application.py &
+	put_aggregated_service/env/bin/python put_aggregated_service/application.py &
+	sleep 1
+	PYTHpython3 tests/integration.py
+	bash kill.sh
+
+kill:
+	bash kill.sh

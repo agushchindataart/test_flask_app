@@ -32,7 +32,7 @@ NUMERIC_FIELDS = (
 )
 
 LOGS_PATH = os.path.join(
-    os.path.dirname(__file__), 'logs', 'put_service.log')
+    os.path.dirname(__file__), 'logs', 'get_service.log')
 
 formatter = logging.Formatter(
     '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
