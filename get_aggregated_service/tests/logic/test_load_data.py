@@ -179,7 +179,7 @@ def test_load_data_from_files_success(
     ]
 
     expected_result = (
-            file_1_load_result + file_2_load_result + file_3_load_result)
+        file_1_load_result + file_2_load_result + file_3_load_result)
     with patch('get_aggregated_service.logic.load_data._load_data_from_file',
                file_load_result_mock):
         result, message = load_data.load_data_from_files()
