@@ -23,25 +23,30 @@ All common operations can be performed with `make` command
 
 ### Initial setup
 ```cd /path/to/the/project
-make init```
+make init
+```
 This command will create virtualenvs and install required packages.
 
 ### Running apps
 ```cd /path/to/the/project
-make run```
+make run
+```
 This command will run both apps with default params. If you need other hosts/ports then set env variables.
 
 ### Running tests
 ```cd /path/to/the/project
-make run_tests```
+make run_tests
+```
 This command will run unit tests for both apps.
 
 ### Running linter
 ```cd /path/to/the/project
-make run_flake```
+make run_flake
+```
 This command will run flake8 for both apps.
 
 ### Cleaning environments
 ```cd /path/to/the/project
-make clean```
+make clean
+```
 This command will remove virtualens for both apps.
